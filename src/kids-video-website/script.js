@@ -506,8 +506,8 @@ function displayBilibiliPlayer(videos) {
         // Format index to be like "01" instead of just "1"
         const formattedEpisode = String(episodeId).padStart(2, '0');
         
-        // Use duration from JSON if available, otherwise use placeholder
-        const duration = video.duration || "00:00";
+        // 格式化时长为分:秒格式
+        const duration = formatDuration(video.duration);
         
         // Create playlist item
         const playlistItem = document.createElement('div');
@@ -527,9 +527,23 @@ function displayBilibiliPlayer(videos) {
             });
             playlistItem.classList.add('active');
             
-            // Update iframe source
-            const videoUrl = video.originalUrl || `https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=${video.bvid}&high_quality=1`;
-            videoIframe.src = videoUrl.includes('blackboard') ? videoUrl : `https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=${video.bvid}&high_quality=1`;
+            // Get episode ID from the video or use index + 1 as fallback
+            const episodeNumber = video.id || index + 1;
+            
+            // Update iframe source with p parameter
+            let videoUrl = '';
+            if (video.originalUrl) {
+                // 如果有原始URL，检查是否已有p参数，没有则添加
+                videoUrl = video.originalUrl;
+                if (!videoUrl.includes('p=')) {
+                    videoUrl += videoUrl.includes('?') ? '&p=' + episodeNumber : '?p=' + episodeNumber;
+                }
+            } else {
+                // 构造新的URL，添加p参数
+                videoUrl = `https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=${video.bvid}&high_quality=1&p=${episodeNumber}`;
+            }
+            
+            videoIframe.src = videoUrl;
         });
         
         playlistItems.appendChild(playlistItem);
@@ -585,9 +599,32 @@ function displayVideos(videos) {
         videoIframe.allowFullscreen = true;
         
         // Set source based on video type
-        videoIframe.src = `https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=${video.bvid}&high_quality=1`;
+        const episodeNumber = video.id || 1;
+        videoIframe.src = `https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=${video.bvid}&high_quality=1&p=${episodeNumber}`;
         
         singleVideoContainer.appendChild(videoIframe);
+        
+        // 添加视频标题和时长
+        if (video.name || video.title) {
+            const titleContainer = document.createElement('div');
+            titleContainer.classList.add('video-title-container');
+            titleContainer.style.padding = '10px';
+            titleContainer.style.display = 'flex';
+            titleContainer.style.justifyContent = 'space-between';
+            
+            const titleSpan = document.createElement('span');
+            titleSpan.textContent = video.name || video.title;
+            titleSpan.style.fontWeight = 'bold';
+            
+            const durationSpan = document.createElement('span');
+            durationSpan.textContent = formatDuration(video.duration);
+            durationSpan.style.color = '#666';
+            
+            titleContainer.appendChild(titleSpan);
+            titleContainer.appendChild(durationSpan);
+            singleVideoContainer.appendChild(titleContainer);
+        }
+        
         videoGridContainer.appendChild(singleVideoContainer);
         return;
     }
@@ -618,7 +655,25 @@ function displayVideos(videos) {
         
         const videoItem = document.createElement('div');
         videoItem.classList.add('video-list-item');
-        videoItem.textContent = videoTitle;
+        
+        // 创建带有时长的视频项
+        const videoItemContent = document.createElement('div');
+        videoItemContent.style.display = 'flex';
+        videoItemContent.style.justifyContent = 'space-between';
+        videoItemContent.style.width = '100%';
+        
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = videoTitle;
+        
+        const durationSpan = document.createElement('span');
+        durationSpan.textContent = formatDuration(video.duration);
+        durationSpan.style.color = '#666';
+        durationSpan.style.fontSize = '0.9em';
+        
+        videoItemContent.appendChild(titleSpan);
+        videoItemContent.appendChild(durationSpan);
+        videoItem.appendChild(videoItemContent);
+        
         videoItem.dataset.index = index;
         
         // Add click event to play video
@@ -629,8 +684,23 @@ function displayVideos(videos) {
             });
             videoItem.classList.add('active');
             
-            // Update the iframe source
-            videoIframe.src = `https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=${video.bvid}&high_quality=1`;
+            // Get episode number
+            const episodeNumber = video.id || index + 1;
+            
+            // Set video source with p parameter
+            let videoUrl = '';
+            if (video.originalUrl) {
+                // 如果有原始URL，检查是否已有p参数，没有则添加
+                videoUrl = video.originalUrl;
+                if (!videoUrl.includes('p=')) {
+                    videoUrl += videoUrl.includes('?') ? '&p=' + episodeNumber : '?p=' + episodeNumber;
+                }
+            } else {
+                // 构造新的URL，添加p参数
+                videoUrl = `https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=${video.bvid}&high_quality=1&p=${episodeNumber}`;
+            }
+            
+            videoIframe.src = videoUrl;
         });
         
         videoList.appendChild(videoItem);
@@ -666,6 +736,17 @@ function getVideoTitle(video, index) {
     
     // Last resort fallback
     return `视频 ${index + 1}`;
+}
+
+// 添加格式化时间的函数，将秒数转换为分:秒格式
+function formatDuration(seconds) {
+    if (!seconds) return "00:00";
+    
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    
+    // 格式化为 MM:SS，确保个位数前补0
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 }
 
 // Load categories when the page loads
