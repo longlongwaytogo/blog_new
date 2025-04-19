@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儿童视频站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            display: flex !important;
+            flex-direction: row !important;
+        }
+        #videos-container {
+            flex: 1 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>儿童视频站</h1>
+        </header>
+        
+        <main>
+            <aside class="sidebar">
+                <h2>视频分类</h2>
+                <div id="category-tree"></div>
+            </aside>
+            
+            <section id="videos-container">
+                <h2 id="video-collection-title"></h2>
+                <div id="video-grid"></div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

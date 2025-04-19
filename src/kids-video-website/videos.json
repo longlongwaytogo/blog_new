@@ -1,0 +1,100 @@
+{
+    "国学": {
+        "古诗": {
+            "李白诗集": {
+                "videos": [
+                    {
+                        "name": "李白 - 将进酒",
+                        "bvid": "BV1xx411c7mz",
+                        "id": 1
+                    },
+                    {
+                        "name": "李白 - 静夜思",
+                        "bvid": "BV1Jx411c7tD",
+                        "id": 2
+                    }
+                ],
+                "originalUrl": "https://www.bilibili.com/video/BV1xx411c7mz",
+                "episodeCount": 2
+            },
+            "独立视频": {
+                "name": "古诗赏析 - 咏鹅",
+                "bvid": "BV1U64y1S7km"
+            },
+            "爱上古诗-黄龙老师": {
+                "videos": [
+                    {
+                        "name": "别董大-高适",
+                        "bvid": "BV1jbr5Y1E7P",
+                        "id": 1
+                    },
+                    {
+                        "name": "嫦娥-李商隐",
+                        "bvid": "BV1jbr5Y1E7P",
+                        "id": 2
+                    }
+                ],
+                "originalUrl": "https://www.bilibili.com/video/BV1jbr5Y1E7P?t=1.8",
+                "episodeCount": 2
+            }
+        },
+        "宋词": [
+            {
+                "name": "苏轼 - 水调歌头",
+                "bvid": "BV1Lx411c7tG"
+            },
+            {
+                "name": "李清照 - 如梦令",
+                "bvid": "BV1Mx411c7tH"
+            }
+        ]
+    },
+    "动画故事": {
+        "经典童话": {
+            "videos": [
+                {
+                    "name": "白雪公主",
+                    "bvid": "BV1Nx411c7tI",
+                    "id": 1
+                },
+                {
+                    "name": "小红帽",
+                    "bvid": "BV1Ox411c7tJ",
+                    "id": 2
+                }
+            ],
+            "originalUrl": "https://www.bilibili.com/medialist/play/ml1329928284",
+            "episodeCount": 2
+        },
+        "原创故事": [
+            {
+                "name": "神秘森林的冒险",
+                "bvid": "BV1Px411c7tK"
+            }
+        ]
+    },
+    "科普知识": {
+        "天文知识": {
+            "videos": [
+                {
+                    "name": "太阳系八大行星",
+                    "bvid": "BV1Qx411c7tL",
+                    "id": 1
+                },
+                {
+                    "name": "恒星的生命周期",
+                    "bvid": "BV1Rx411c7tM",
+                    "id": 2
+                }
+            ],
+            "originalUrl": "https://www.bilibili.com/medialist/play/ml1329928285",
+            "episodeCount": 2
+        },
+        "生物知识": [
+            {
+                "name": "动物的分类",
+                "bvid": "BV1Sx411c7tN"
+            }
+        ]
+    }
+}    
