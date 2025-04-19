@@ -10,8 +10,8 @@ import os
 
 """
 获取B站视频集中所有集的名称列表和序号
-使用方法：python VideoList.py <BV号> [输出JSON文件名]
-例如：python VideoList.py BV1jbr5Y1E7P data/videos_output.json
+使用方法：python VideoList.py <BV号> [输出JSON文件名] [类别] [子类别] [集合名称]
+例如：python VideoList.py BV1jbr5Y1E7P data/古诗.json 国学 古诗 "爱上古诗-黄龙老师"
 """
 
 def get_video_info(bvid):
@@ -58,7 +58,9 @@ def get_video_info(bvid):
             return {
                 'title': main_title,
                 'bvid': bvid,
-                'videos': videos
+                'videos': videos,
+                'originalUrl': url,
+                'episodeCount': len(videos)
             }
         
         # 方法2：使用BeautifulSoup解析网页
@@ -90,10 +92,26 @@ def get_video_info(bvid):
                 except ValueError:
                     pass
             
+            # 尝试获取时长信息
+            duration_element = episode.select_one('.duration')
+            duration = None
+            if duration_element:
+                duration_text = duration_element.text.strip()
+                # 将分:秒格式转换为秒数
+                try:
+                    if ':' in duration_text:
+                        minutes, seconds = duration_text.split(':')
+                        duration = int(minutes) * 60 + int(seconds)
+                    else:
+                        duration = int(duration_text)
+                except ValueError:
+                    pass
+            
             video = {
                 'id': index,
                 'name': title,
-                'bvid': bvid
+                'bvid': bvid,
+                'duration': duration
             }
             videos.append(video)
         
@@ -101,7 +119,9 @@ def get_video_info(bvid):
             return {
                 'title': main_title,
                 'bvid': bvid,
-                'videos': videos
+                'videos': videos,
+                'originalUrl': url,
+                'episodeCount': len(videos)
             }
         
         # 如果以上方法都失败，尝试直接使用API获取
@@ -117,21 +137,26 @@ def get_video_info(bvid):
                     'id': page.get('page', i + 1),
                     'name': page.get('part', f'P{page.get("page", i + 1)}'),
                     'bvid': bvid,
-                    'cid': page.get('cid')
+                    'cid': page.get('cid'),
+                    'duration': 0  # API不一定提供时长，设为默认值
                 }
                 videos.append(video)
             
             return {
                 'title': 'Unknown Title',  # API不提供总标题
                 'bvid': bvid,
-                'videos': videos
+                'videos': videos,
+                'originalUrl': url,
+                'episodeCount': len(videos)
             }
         
         # 如果所有方法都失败，返回一个空结果
         return {
             'title': 'Unknown Title',
             'bvid': bvid,
-            'videos': []
+            'videos': [],
+            'originalUrl': url,
+            'episodeCount': 0
         }
     
     except Exception as e:
@@ -140,20 +165,54 @@ def get_video_info(bvid):
             'title': 'Error',
             'bvid': bvid,
             'videos': [],
-            'error': str(e)
+            'error': str(e),
+            'originalUrl': url,
+            'episodeCount': 0
         }
 
-def save_to_json(data, filename):
-    """将数据保存为JSON文件"""
-    with open(filename, 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
+def save_to_json(data, filename, category=None, subcategory=None, collection_name=None):
+    """将数据保存为JSON文件，按照videos.json中的格式"""
+    # 如果提供了类别信息，则构建嵌套结构
+    if category and subcategory and collection_name:
+        # 检查文件是否已存在
+        existing_data = {}
+        if os.path.exists(filename):
+            try:
+                with open(filename, 'r', encoding='utf-8') as file:
+                    existing_data = json.load(file)
+            except json.JSONDecodeError:
+                print(f"警告: 文件 {filename} 存在但不是有效的JSON，将被覆盖。")
+        
+        # 确保嵌套结构存在
+        if category not in existing_data:
+            existing_data[category] = {}
+        if subcategory not in existing_data[category]:
+            existing_data[category][subcategory] = {}
+        
+        # 添加或更新集合
+        formatted_data = {
+            'videos': data['videos'],
+            'originalUrl': data['originalUrl'],
+            'episodeCount': data['episodeCount']
+        }
+        
+        existing_data[category][subcategory][collection_name] = formatted_data
+        
+        # 保存更新后的数据
+        with open(filename, 'w', encoding='utf-8') as file:
+            json.dump(existing_data, file, ensure_ascii=False, indent=4)
+    else:
+        # 如果没有提供类别信息，则保存原始结构
+        with open(filename, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+    
     print(f"数据已保存到 {filename}")
 
 def main():
     # 检查命令行参数
     if len(sys.argv) < 2:
-        print("使用方法: python VideoList.py <BV号> [输出JSON文件名]")
-        print("例如: python VideoList.py BV1jbr5Y1E7P videos_output.json")
+        print("使用方法: python VideoList.py <BV号> [输出JSON文件名] [类别] [子类别] [集合名称]")
+        print("例如: python VideoList.py BV1jbr5Y1E7P data/古诗.json 国学 古诗 \"爱上古诗-黄龙老师\"")
         return
     
     # 获取BV号
@@ -161,6 +220,11 @@ def main():
     
     # 获取输出文件名（可选）
     output_file = sys.argv[2] if len(sys.argv) > 2 else f"{bvid}_videos.json"
+    
+    # 获取类别信息（可选）
+    category = sys.argv[3] if len(sys.argv) > 3 else None
+    subcategory = sys.argv[4] if len(sys.argv) > 4 else None
+    collection_name = sys.argv[5] if len(sys.argv) > 5 else None
     
     # 获取视频信息
     video_info = get_video_info(bvid)
@@ -174,7 +238,7 @@ def main():
         print(f"  {video['id']}. {video['name']}")
     
     # 保存结果
-    save_to_json(video_info, output_file)
+    save_to_json(video_info, output_file, category, subcategory, collection_name)
 
 if __name__ == "__main__":
     main()
