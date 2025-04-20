@@ -241,6 +241,7 @@ main {
 .main-player {
     flex: 1;
     min-height: 500px;
+    position: relative;
 }
 
 .playlist {
@@ -248,8 +249,7 @@ main {
     border-left: 1px solid #e5e7eb;
     display: flex;
     flex-direction: column;
-    max-height: 500px;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .playlist-header {
@@ -260,6 +260,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .playlist-count {
@@ -271,7 +272,6 @@ main {
 .playlist-items {
     flex: 1;
     overflow-y: auto;
-    max-height: 360px;
 }
 
 .playlist-item {
@@ -284,6 +284,8 @@ main {
     transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
+    height: 48px;
+    box-sizing: border-box;
 }
 
 .playlist-item:after {
@@ -362,7 +364,7 @@ main {
 }
 
 .video-list {
-    max-height: 200px;
+    height: 240px;
     overflow-y: auto;
     border-bottom: 1px solid #e5e7eb;
 }
@@ -372,6 +374,9 @@ main {
     cursor: pointer;
     border-bottom: 1px solid #f3f4f6;
     transition: background-color 0.2s ease;
+    height: 48px;
+    display: flex;
+    align-items: center;
 }
 
 .video-list-item:hover {

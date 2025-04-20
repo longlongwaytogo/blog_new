@@ -559,6 +559,38 @@ function displayBilibiliPlayer(videos) {
     videoGridContainer.innerHTML = '';
     videoGridContainer.appendChild(bilibiliPlayer);
     
+    // 调整函数：确保播放列表高度与视频区域完全匹配
+    const calculateVisibleItems = () => {
+        // 直接设置播放列表容器的高度与视频播放区域完全一致
+        playlist.style.height = `${mainPlayer.offsetHeight}px`;
+        
+        // 计算播放列表头部高度
+        const headerHeight = playlistHeader.offsetHeight || 45; // 默认45px
+        
+        // 确保列表项容器高度是总高度减去头部高度
+        playlistItems.style.height = `${mainPlayer.offsetHeight - headerHeight}px`;
+        playlistItems.style.overflowY = 'auto';
+        
+        console.log(`视频播放区高度: ${mainPlayer.offsetHeight}px, 播放列表高度: ${playlist.offsetHeight}px`);
+    };
+    
+    // 使用ResizeObserver监听视频播放器大小变化
+    if (window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(() => {
+            calculateVisibleItems();
+        });
+        resizeObserver.observe(mainPlayer);
+    }
+    
+    // 延迟时间更长，确保iframe加载完成
+    setTimeout(calculateVisibleItems, 500);
+    
+    // 视频加载完成后再次计算
+    videoIframe.addEventListener('load', calculateVisibleItems);
+    
+    // 窗口大小改变时重新计算
+    window.addEventListener('resize', calculateVisibleItems);
+    
     // Play the first video
     const firstPlaylistItem = playlistItems.querySelector('.playlist-item');
     if (firstPlaylistItem) {

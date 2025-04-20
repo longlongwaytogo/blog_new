@@ -1171,20 +1171,163 @@
                  "episodeCount": 25
              }
          },
-        "宋词": [
-            {
-                "name": "苏轼 - 水调歌头",
-                "bvid": "BV1Lx411c7tG",
-                "cid": 174384096,
-                "duration": 175
-            },
-            {
-                "name": "李清照 - 如梦令",
-                "bvid": "BV1Mx411c7tH",
-                "cid": 174384097,
-                "duration": 160
+        "其他": {
+            "国学启蒙朗诵-三字经-千字文": {
+                "title": "国学启蒙",
+                "bvid": "BV1eS4y1B7qk",
+                "videos": [
+                    {
+                        "id": 1,
+                        "name": "【国学启蒙】三字经全文朗读",
+                        "bvid": "BV1eS4y1B7qk",
+                        "cid": 722174370,
+                        "duration": 725
+                    },
+                    {
+                        "id": 2,
+                        "name": "【国学经典】弟子规",
+                        "bvid": "BV1fY4y1M7hV",
+                        "cid": 814370678,
+                        "duration": 628
+                    },
+                    {
+                        "id": 3,
+                        "name": "【国学启蒙】百家姓全文朗读",
+                        "bvid": "BV1EW4y1Y7DY",
+                        "cid": 802817113,
+                        "duration": 394
+                    },
+                    {
+                        "id": 4,
+                        "name": "【国学启蒙】千字文全文朗读一夜白头做千字文，流传千年",
+                        "bvid": "BV1kY4y137yp",
+                        "cid": 742393571,
+                        "duration": 638
+                    },
+                    {
+                        "id": 5,
+                        "name": "小古文第1篇-云对雨，雪对风",
+                        "bvid": "BV1Cw411C7ZA",
+                        "cid": 1303419306,
+                        "duration": 19
+                    },
+                    {
+                        "id": 6,
+                        "name": "小古文第2篇-山对水，海对河",
+                        "bvid": "BV1Sy4y1A7ts",
+                        "cid": 1303422901,
+                        "duration": 38
+                    },
+                    {
+                        "id": 7,
+                        "name": "小古文第3篇-苏老泉",
+                        "bvid": "BV1uw411w7aQ",
+                        "cid": 1303424616,
+                        "duration": 14
+                    },
+                    {
+                        "id": 8,
+                        "name": "小古文第4篇-金生丽水",
+                        "bvid": "BV1oC4y1G7PD",
+                        "cid": 1303425553,
+                        "duration": 17
+                    },
+                    {
+                        "id": 9,
+                        "name": "小古文第5篇-五岳五湖",
+                        "bvid": "BV1j84y1d7gV",
+                        "cid": 1303426917,
+                        "duration": 32
+                    },
+                    {
+                        "id": 10,
+                        "name": "小古文第6篇-冠必正",
+                        "bvid": "BV15B4y1o7qj",
+                        "cid": 1304125536,
+                        "duration": 20
+                    },
+                    {
+                        "id": 11,
+                        "name": "小古文第6篇-蝴蝶与花",
+                        "bvid": "BV1Gh4y1B77Q",
+                        "cid": 1304225706,
+                        "duration": 18
+                    },
+                    {
+                        "id": 12,
+                        "name": "小古文第8篇-踏青",
+                        "bvid": "BV1qh4y1q7xf",
+                        "cid": 1304227873,
+                        "duration": 25
+                    },
+                    {
+                        "id": 13,
+                        "name": "小古文第9篇-逐雀",
+                        "bvid": "BV15N4y1C78G",
+                        "cid": 1304234450,
+                        "duration": 23
+                    },
+                    {
+                        "id": 14,
+                        "name": "小古文第10篇-雪人",
+                        "bvid": "BV1y8411r7wK",
+                        "cid": 1304235882,
+                        "duration": 29
+                    },
+                    {
+                        "id": 15,
+                        "name": "小古文第11篇-勿贪多",
+                        "bvid": "BV1Gz4y1N7Kd",
+                        "cid": 1315236326,
+                        "duration": 23
+                    },
+                    {
+                        "id": 16,
+                        "name": "小古文第12篇-采菱歌",
+                        "bvid": "BV1vc411f7Rw",
+                        "cid": 1315239828,
+                        "duration": 23
+                    },
+                    {
+                        "id": 17,
+                        "name": "小古文第13篇-乡村",
+                        "bvid": "BV18w411q7KM",
+                        "cid": 1315240690,
+                        "duration": 23
+                    },
+                    {
+                        "id": 18,
+                        "name": "小古文第十五篇-芦花",
+                        "bvid": "BV1Vc411R7Ux",
+                        "cid": 1325526039,
+                        "duration": 15
+                    },
+                    {
+                        "id": 19,
+                        "name": "小古文第十六篇-插秧",
+                        "bvid": "BV1zG411S71Z",
+                        "cid": 1332041433,
+                        "duration": 21
+                    },
+                    {
+                        "id": 20,
+                        "name": "小古文第十四篇-蟋蟀",
+                        "bvid": "BV1eC4y177kX",
+                        "cid": 1325523607,
+                        "duration": 25
+                    },
+                    {
+                        "id": 21,
+                        "name": "小古文第十七篇-采菱",
+                        "bvid": "BV1FN4y1S79U",
+                        "cid": 1332050526,
+                        "duration": 27
+                    }
+                ],
+                "originalUrl": "https://www.bilibili.com/video/BV1eS4y1B7qk",
+                "episodeCount": 21
             }
-        ]
+        }
     },
     "历史故事": {
         "上下五千年":{
@@ -1571,7 +1714,7 @@
         "天文知识": {
             "videos": [
                 {
-                    "name": "太阳系八大行星",
+                    "name": "太阳系八大行星1",
                     "bvid": "BV1Qx411c7tL",
                     "id": 1,
                     "cid": 174384101,
@@ -1579,7 +1722,7 @@
                 },
                 {
                     "name": "恒星的生命周期",
-                    "bvid": "BV1Rx411c7tM",
+                    "bvid": "BV1Rx411c7tM1",
                     "id": 2,
                     "cid": 174384102,
                     "duration": 320
@@ -1588,13 +1731,58 @@
             "originalUrl": "https://www.bilibili.com/medialist/play/ml1329928285",
             "episodeCount": 2
         },
-        "生物知识": [
-            {
-                "name": "动物的分类",
-                "bvid": "BV1Sx411c7tN",
-                "cid": 174384103,
-                "duration": 280
-            }
-        ]
+        "纪录片":{
+            "宇宙探秘":{
+                "title": "【CCTV纪录片】宇宙探秘",
+                "bvid": "BV1ue4y1x7PR",
+                "videos": [
+                    {
+                        "id": 1,
+                        "name": "Exploration Of The Universe (1)",
+                        "bvid": "BV1ue4y1x7PR",
+                        "cid": 881423097,
+                        "duration": 2474
+                    },
+                    {
+                        "id": 2,
+                        "name": "Exploration Of The Universe (2)",
+                        "bvid": "BV1ue4y1x7PR",
+                        "cid": 881419572,
+                        "duration": 2476
+                    },
+                    {
+                        "id": 3,
+                        "name": "Exploration Of The Universe (3)",
+                        "bvid": "BV1ue4y1x7PR",
+                        "cid": 881420300,
+                        "duration": 2472
+                    },
+                    {
+                        "id": 4,
+                        "name": "Exploration Of The Universe (4)",
+                        "bvid": "BV1ue4y1x7PR",
+                        "cid": 881422601,
+                        "duration": 2474
+                    },
+                    {
+                        "id": 5,
+                        "name": "Exploration Of The Universe (5)",
+                        "bvid": "BV1ue4y1x7PR",
+                        "cid": 881426642,
+                        "duration": 2467
+                    },
+                    {
+                        "id": 6,
+                        "name": "Exploration Of The Universe (6)",
+                        "bvid": "BV1ue4y1x7PR",
+                        "cid": 881429140,
+                        "duration": 2462
+                    }
+                ],
+                "originalUrl": "https://www.bilibili.com/video/BV1ue4y1x7PR",
+                "episodeCount": 6
+            }       
+         }
+
     }
 }    

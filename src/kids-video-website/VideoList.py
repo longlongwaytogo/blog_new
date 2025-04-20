@@ -7,12 +7,118 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import os
+import argparse
 
 """
 获取B站视频集中所有集的名称列表和序号
-使用方法：python VideoList.py <BV号> [输出JSON文件名] [类别] [子类别] [集合名称]
+使用方法：python VideoList.py <BV号> [输出JSON文件名] [类别] [子类别] [集合名称] [--collection]
 例如：python VideoList.py BV1jbr5Y1E7P data/古诗.json 国学 古诗 "爱上古诗-黄龙老师"
+使用 --collection 参数处理新版B站合集
 """
+
+def get_ugc_season_info(bvid):
+    """获取B站新版合集(ugc_season)信息，处理每个视频有不同BV号的情况"""
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': 'https://www.bilibili.com'
+    }
+    
+    # 构建视频URL
+    url = f'https://www.bilibili.com/video/{bvid}'
+    
+    try:
+        # 获取页面内容
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        html_content = response.text
+        
+        # 提取视频信息
+        initial_state_match = re.search(r'window\.__INITIAL_STATE__=(.+?);\(function', html_content)
+        if not initial_state_match:
+            print("无法从页面提取__INITIAL_STATE__数据")
+            return None
+            
+        initial_state = json.loads(initial_state_match.group(1))
+        
+        # 确认是否包含ugc_season信息
+        if 'videoData' not in initial_state or 'ugc_season' not in initial_state['videoData']:
+            print("该视频不是合集或合集结构不兼容")
+            return get_video_info(bvid)  # 回退到传统方式处理
+            
+        # 提取合集信息
+        ugc_season = initial_state['videoData']['ugc_season']
+        main_title = ugc_season.get('title', '未知合集')
+        
+        videos = []
+        # 处理当前视频
+        current_video = initial_state['videoData']
+        videos.append({
+            'id': 1,
+            'name': current_video.get('title', '未知标题'),
+            'bvid': current_video.get('bvid'),
+            'cid': current_video.get('cid'),
+            'duration': current_video.get('duration')
+        })
+        
+        # 处理合集中的其他视频
+        if 'sections' in ugc_season:
+            video_index = 2  # 从2开始计数，因为1已用于当前视频
+            for section in ugc_season['sections']:
+                if 'episodes' in section:
+                    for episode in section['episodes']:
+                        # 如果与当前视频相同，则跳过
+                        if episode.get('bvid') == current_video.get('bvid'):
+                            continue
+                            
+                        # 获取视频详细信息
+                        video_detail = get_video_detail(episode.get('bvid'))
+                        
+                        video = {
+                            'id': video_index,
+                            'name': episode.get('title', f'视频 {video_index}'),
+                            'bvid': episode.get('bvid'),
+                            'cid': video_detail.get('cid') if video_detail else None,
+                            'duration': video_detail.get('duration') if video_detail else 0
+                        }
+                        videos.append(video)
+                        video_index += 1
+        
+        if len(videos) > 0:
+            return {
+                'title': main_title,
+                'bvid': bvid,  # 使用主BV号作为合集ID
+                'videos': videos,
+                'originalUrl': url,
+                'episodeCount': len(videos)
+            }
+        else:
+            # 如果没有找到视频，回退到传统处理方式
+            return get_video_info(bvid)
+            
+    except Exception as e:
+        print(f"获取合集信息时出错: {e}")
+        return get_video_info(bvid)  # 回退到传统处理方式
+
+def get_video_detail(bvid):
+    """获取单个视频的详细信息"""
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        }
+        api_url = f'https://api.bilibili.com/x/web-interface/view?bvid={bvid}'
+        response = requests.get(api_url, headers=headers)
+        data = response.json()
+        
+        if data.get('code') == 0 and 'data' in data:
+            video_data = data['data']
+            return {
+                'cid': video_data.get('cid'),
+                'duration': video_data.get('duration')
+            }
+        return None
+    except Exception as e:
+        print(f"获取视频详情出错 {bvid}: {e}")
+        return None
 
 def get_video_info(bvid):
     """获取视频信息，包括分P信息"""
@@ -209,32 +315,60 @@ def save_to_json(data, filename, category=None, subcategory=None, collection_nam
     print(f"数据已保存到 {filename}")
 
 def main():
-    # 检查命令行参数
-    if len(sys.argv) < 2:
-        print("使用方法: python VideoList.py <BV号> [输出JSON文件名] [类别] [子类别] [集合名称]")
-        print("例如: python VideoList.py BV1jbr5Y1E7P data/古诗.json 国学 古诗 \"爱上古诗-黄龙老师\"")
-        return
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser(description='获取B站视频信息')
+    parser.add_argument('bvid', help='视频的BV号')
+    parser.add_argument('output', nargs='?', help='输出JSON文件名', default=None)
+    parser.add_argument('category', nargs='?', help='分类', default=None)
+    parser.add_argument('subcategory', nargs='?', help='子分类', default=None)
+    parser.add_argument('collection_name', nargs='?', help='合集名称', default=None)
+    parser.add_argument('--collection', action='store_true', help='是否处理新版合集')
     
-    # 获取BV号
-    bvid = sys.argv[1]
-    
-    # 获取输出文件名（可选）
-    output_file = sys.argv[2] if len(sys.argv) > 2 else f"{bvid}_videos.json"
-    
-    # 获取类别信息（可选）
-    category = sys.argv[3] if len(sys.argv) > 3 else None
-    subcategory = sys.argv[4] if len(sys.argv) > 4 else None
-    collection_name = sys.argv[5] if len(sys.argv) > 5 else None
+    # 解析命令行参数
+    try:
+        args = parser.parse_args()
+        
+        bvid = args.bvid
+        output_file = args.output if args.output else f"{bvid}_videos.json"
+        category = args.category
+        subcategory = args.subcategory
+        collection_name = args.collection_name
+        is_collection = args.collection
+        
+    except SystemExit:
+        # 如果argparse抛出退出异常，回退到传统参数处理方式
+        print("使用传统命令行参数处理方式")
+        
+        # 检查命令行参数
+        if len(sys.argv) < 2:
+            print("使用方法: python VideoList.py <BV号> [输出JSON文件名] [类别] [子类别] [集合名称]")
+            print("例如: python VideoList.py BV1jbr5Y1E7P data/古诗.json 国学 古诗 \"爱上古诗-黄龙老师\"")
+            print("使用 --collection 参数处理新版B站合集")
+            return
+        
+        # 获取BV号
+        bvid = sys.argv[1]
+        
+        # 获取输出文件名（可选）
+        output_file = sys.argv[2] if len(sys.argv) > 2 else f"{bvid}_videos.json"
+        
+        # 获取类别信息（可选）
+        category = sys.argv[3] if len(sys.argv) > 3 else None
+        subcategory = sys.argv[4] if len(sys.argv) > 4 else None
+        collection_name = sys.argv[5] if len(sys.argv) > 5 else None
+        
+        # 检查是否有--collection参数
+        is_collection = '--collection' in sys.argv
     
     # 获取视频信息
-    video_info = get_video_info(bvid)
+    video_info = get_ugc_season_info(bvid) if is_collection else get_video_info(bvid)
     
     # 打印结果
     print(f"视频标题: {video_info['title']}")
     print(f"BV号: {video_info['bvid']}")
     print(f"找到 {len(video_info['videos'])} 个视频:")
     
-    for i, video in enumerate(video_info['videos']):
+    for video in video_info['videos']:
         print(f"  {video['id']}. {video['name']}")
     
     # 保存结果
