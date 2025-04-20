@@ -986,6 +986,191 @@
             }
 
         },
+        "中医": {
+            "中医药故事": {
+                 "title": "《中医药故事》",
+                 "bvid": "BV1Y14y1d7Jt",
+                 "videos": [
+                     {
+                         "id": 1,
+                         "name": "义妁的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182985454,
+                         "duration": 619
+                     },
+                     {
+                         "id": 2,
+                         "name": "张仲景的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182994127,
+                         "duration": 619
+                     },
+                     {
+                         "id": 3,
+                         "name": "华佗的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182985343,
+                         "duration": 619
+                     },
+                     {
+                         "id": 4,
+                         "name": "孙思邈的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182985612,
+                         "duration": 619
+                     },
+                     {
+                         "id": 5,
+                         "name": "叶天士的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182986451,
+                         "duration": 619
+                     },
+                     {
+                         "id": 6,
+                         "name": "青娥丸的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182986357,
+                         "duration": 619
+                     },
+                     {
+                         "id": 7,
+                         "name": "六味地黄丸的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182986580,
+                         "duration": 619
+                     },
+                     {
+                         "id": 8,
+                         "name": "理中丸的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182986643,
+                         "duration": 619
+                     },
+                     {
+                         "id": 9,
+                         "name": "藿香正气水的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182987392,
+                         "duration": 619
+                     },
+                     {
+                         "id": 10,
+                         "name": "国公酒的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182987499,
+                         "duration": 619
+                     },
+                     {
+                         "id": 11,
+                         "name": "玉泉丸的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182987538,
+                         "duration": 619
+                     },
+                     {
+                         "id": 12,
+                         "name": "六神丸的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182987300,
+                         "duration": 619
+                     },
+                     {
+                         "id": 13,
+                         "name": "补阳还五汤的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182987554,
+                         "duration": 619
+                     },
+                     {
+                         "id": 14,
+                         "name": "白头翁的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182988459,
+                         "duration": 619
+                     },
+                     {
+                         "id": 15,
+                         "name": "杜仲的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182988541,
+                         "duration": 619
+                     },
+                     {
+                         "id": 16,
+                         "name": "紫苏的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182988474,
+                         "duration": 619
+                     },
+                     {
+                         "id": 17,
+                         "name": "徐长卿的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182988703,
+                         "duration": 619
+                     },
+                     {
+                         "id": 18,
+                         "name": "当归的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182988712,
+                         "duration": 619
+                     },
+                     {
+                         "id": 19,
+                         "name": "甘草的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182989463,
+                         "duration": 619
+                     },
+                     {
+                         "id": 20,
+                         "name": "人参的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182989565,
+                         "duration": 619
+                     },
+                     {
+                         "id": 21,
+                         "name": "橘井泉香的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182989698,
+                         "duration": 619
+                     },
+                     {
+                         "id": 22,
+                         "name": "杏林春暖的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182990355,
+                         "duration": 619
+                     },
+                     {
+                         "id": 23,
+                         "name": "开口连的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182990457,
+                         "duration": 619
+                     },
+                     {
+                         "id": 24,
+                         "name": "屠苏酒的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182990500,
+                         "duration": 619
+                     },
+                     {
+                         "id": 25,
+                         "name": "新生儿脐粉的故事",
+                         "bvid": "BV1Y14y1d7Jt",
+                         "cid": 1182990669,
+                         "duration": 616
+                     }
+                 ],
+                 "originalUrl": "https://www.bilibili.com/video/BV1Y14y1d7Jt",
+                 "episodeCount": 25
+             }
+         },
         "宋词": [
             {
                 "name": "苏轼 - 水调歌头",
