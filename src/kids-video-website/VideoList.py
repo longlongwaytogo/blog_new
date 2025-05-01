@@ -14,6 +14,8 @@ import argparse
 使用方法：python VideoList.py <BV号> [输出JSON文件名] [类别] [子类别] [集合名称] [--collection]
 例如：python VideoList.py BV1jbr5Y1E7P data/古诗.json 国学 古诗 "爱上古诗-黄龙老师"
 使用 --collection 参数处理新版B站合集
+
+合集：如：  VideoList.py <BV号> [输出JSON文件名] BV1Y22JYKExq --collection
 """
 
 def get_ugc_season_info(bvid):
