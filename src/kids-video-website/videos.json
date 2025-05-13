@@ -1418,7 +1418,558 @@
                 ],
                 "originalUrl": "https://www.bilibili.com/video/BV1Y22JYKExq",
                 "episodeCount": 12
+            },
+            "第一季-华夏历史":{
+                    "title": "如果历史是一群喵 1-3季",
+                    "bvid": "ss25469",
+                    "videos": [
+                        {
+                            "id": 1,
+                            "name": "华夏诞生",
+                            "bvid": "BV1eW411f7Lh",
+                            "cid": 53869138,
+                            "duration": 264000
+                        },
+                        {
+                            "id": 2,
+                            "name": "统一战争",
+                            "bvid": "BV1NW411o7UW",
+                            "cid": 54862410,
+                            "duration": 274000
+                        },
+                        {
+                            "id": 3,
+                            "name": "三皇五帝",
+                            "bvid": "BV15W411k7qY",
+                            "cid": 55688423,
+                            "duration": 297000
+                        },
+                        {
+                            "id": 4,
+                            "name": "大禹建国",
+                            "bvid": "BV1iW411r7aD",
+                            "cid": 56382402,
+                            "duration": 281000
+                        },
+                        {
+                            "id": 5,
+                            "name": "夏家天下",
+                            "bvid": "BV1hW411S7jX",
+                            "cid": 57270795,
+                            "duration": 246000
+                        },
+                        {
+                            "id": 6,
+                            "name": "少康复国",
+                            "bvid": "BV1eW41127ss",
+                            "cid": 58250450,
+                            "duration": 325000
+                        },
+                        {
+                            "id": 7,
+                            "name": "商汤灭夏",
+                            "bvid": "BV1hb411F77P",
+                            "cid": 59191918,
+                            "duration": 365000
+                        },
+                        {
+                            "id": 8,
+                            "name": "伊尹辅政",
+                            "bvid": "BV1Yt411o7p6",
+                            "cid": 205359390,
+                            "duration": 366000
+                        },
+                        {
+                            "id": 9,
+                            "name": "武丁中兴",
+                            "bvid": "BV1qb411N7Jh",
+                            "cid": 60912037,
+                            "duration": 359000
+                        },
+                        {
+                            "id": 10,
+                            "name": "末代商王",
+                            "bvid": "BV1eb411w7u7",
+                            "cid": 61772834,
+                            "duration": 308000
+                        },
+                        {
+                            "id": 11,
+                            "name": "西周灭商",
+                            "bvid": "BV1wt411U76c",
+                            "cid": 62673908,
+                            "duration": 337000
+                        },
+                        {
+                            "id": 12,
+                            "name": "周公治国",
+                            "bvid": "BV1Rt411y7sj",
+                            "cid": 63543964,
+                            "duration": 367000
+                        },
+                        {
+                            "id": 13,
+                            "name": "东周西周",
+                            "bvid": "BV1wt411971j",
+                            "cid": 64471592,
+                            "duration": 402000
+                        },
+                        {
+                            "id": 14,
+                            "name": "霸王初现",
+                            "bvid": "BV1Vt411W7wD",
+                            "cid": 71155050,
+                            "duration": 445000
+                        },
+                        {
+                            "id": 15,
+                            "name": "大器晚成",
+                            "bvid": "BV1qt411a7yf",
+                            "cid": 72513878,
+                            "duration": 418000
+                        },
+                        {
+                            "id": 16,
+                            "name": "一鸣惊人",
+                            "bvid": "BV1Zt411t7W7",
+                            "cid": 73432706,
+                            "duration": 374000
+                        },
+                        {
+                            "id": 17,
+                            "name": "威震东南",
+                            "bvid": "BV16b411676g",
+                            "cid": 74560374,
+                            "duration": 374000
+                        },
+                        {
+                            "id": 18,
+                            "name": "吴越相争",
+                            "bvid": "BV15b411m7DG",
+                            "cid": 76691866,
+                            "duration": 365000
+                        },
+                        {
+                            "id": 19,
+                            "name": "三家分晋",
+                            "bvid": "BV1Pb411a76X",
+                            "cid": 77881273,
+                            "duration": 358000
+                        },
+                        {
+                            "id": 20,
+                            "name": "商鞅变法",
+                            "bvid": "BV1eb411B7zd",
+                            "cid": 79481568,
+                            "duration": 396000
+                        },
+                        {
+                            "id": 21,
+                            "name": "六国合纵",
+                            "bvid": "BV1ab411i7L5",
+                            "cid": 80339612,
+                            "duration": 352000
+                        },
+                        {
+                            "id": 22,
+                            "name": "以横破纵",
+                            "bvid": "BV1Bb411J7PR",
+                            "cid": 81319227,
+                            "duration": 323000
+                        },
+                        {
+                            "id": 23,
+                            "name": "昭王称霸",
+                            "bvid": "BV1Fb411E77E",
+                            "cid": 82630466,
+                            "duration": 294000
+                        },
+                        {
+                            "id": 24,
+                            "name": "乱世巨贾",
+                            "bvid": "BV1wb411s7VJ",
+                            "cid": 83783069,
+                            "duration": 292000
+                        },
+                        {
+                            "id": 25,
+                            "name": "新王登基",
+                            "bvid": "BV1wb411377M",
+                            "cid": 84782747,
+                            "duration": 355000
+                        },
+                        {
+                            "id": 26,
+                            "name": "千秋一统",
+                            "bvid": "BV17b411T7fX",
+                            "cid": 101319021,
+                            "duration": 319000
+                        },
+                        {
+                            "id": 27,
+                            "name": "风暴前夕",
+                            "bvid": "BV1g4411c7vm",
+                            "cid": 101148798,
+                            "duration": 407000
+                        },
+                        {
+                            "id": 28,
+                            "name": "揭竿而起",
+                            "bvid": "BV1p4411c7n3",
+                            "cid": 101152329,
+                            "duration": 372000
+                        },
+                        {
+                            "id": 29,
+                            "name": "霸王诞生",
+                            "bvid": "BV1Nt411n7RK",
+                            "cid": 104273433,
+                            "duration": 368000
+                        },
+                        {
+                            "id": 30,
+                            "name": "大风起兮",
+                            "bvid": "BV1dt411A7RV",
+                            "cid": 105979379,
+                            "duration": 428000
+                        },
+                        {
+                            "id": 31,
+                            "name": "双雄并立",
+                            "bvid": "BV18t411u7zG",
+                            "cid": 107776657,
+                            "duration": 354000
+                        },
+                        {
+                            "id": 32,
+                            "name": "楚汉争雄",
+                            "bvid": "BV1m4411X7Ly",
+                            "cid": 109580982,
+                            "duration": 390000
+                        },
+                        {
+                            "id": 33,
+                            "name": "吕氏专政",
+                            "bvid": "BV1g4411f7D1",
+                            "cid": 111609519,
+                            "duration": 455000
+                        },
+                        {
+                            "id": 34,
+                            "name": "文景之治",
+                            "bvid": "BV1f4411r7xm",
+                            "cid": 114731949,
+                            "duration": 378000
+                        },
+                        {
+                            "id": 35,
+                            "name": "汉武大帝",
+                            "bvid": "BV1F4411m75e",
+                            "cid": 114798256,
+                            "duration": 422000
+                        },
+                        {
+                            "id": 36,
+                            "name": "王莽代汉",
+                            "bvid": "BV1w4411C7Hg",
+                            "cid": 116100580,
+                            "duration": 456000
+                        },
+                        {
+                            "id": 37,
+                            "name": "风起绿林",
+                            "bvid": "BV1EJ411A7TN",
+                            "cid": 117409427,
+                            "duration": 410000
+                        },
+                        {
+                            "id": 38,
+                            "name": "光武复国",
+                            "bvid": "BV1TJ411g7DN",
+                            "cid": 118843416,
+                            "duration": 442000
+                        }
+                    ],
+                    "originalUrl": "https://www.bilibili.com/bangumi/play/ss25469",
+                    "episodeCount": 38
+                },
+            "历史是只喵":{
+                "第一季-华夏历史":{
+                    "title": "如果历史是一群喵 1-3季",
+                    "bvid": "ss25469",
+                    "videos": [
+                        {
+                            "id": 1,
+                            "name": "华夏诞生",
+                            "bvid": "BV1eW411f7Lh",
+                            "cid": 53869138,
+                            "duration": 264000
+                        },
+                        {
+                            "id": 2,
+                            "name": "统一战争",
+                            "bvid": "BV1NW411o7UW",
+                            "cid": 54862410,
+                            "duration": 274000
+                        },
+                        {
+                            "id": 3,
+                            "name": "三皇五帝",
+                            "bvid": "BV15W411k7qY",
+                            "cid": 55688423,
+                            "duration": 297000
+                        },
+                        {
+                            "id": 4,
+                            "name": "大禹建国",
+                            "bvid": "BV1iW411r7aD",
+                            "cid": 56382402,
+                            "duration": 281000
+                        },
+                        {
+                            "id": 5,
+                            "name": "夏家天下",
+                            "bvid": "BV1hW411S7jX",
+                            "cid": 57270795,
+                            "duration": 246000
+                        },
+                        {
+                            "id": 6,
+                            "name": "少康复国",
+                            "bvid": "BV1eW41127ss",
+                            "cid": 58250450,
+                            "duration": 325000
+                        },
+                        {
+                            "id": 7,
+                            "name": "商汤灭夏",
+                            "bvid": "BV1hb411F77P",
+                            "cid": 59191918,
+                            "duration": 365000
+                        },
+                        {
+                            "id": 8,
+                            "name": "伊尹辅政",
+                            "bvid": "BV1Yt411o7p6",
+                            "cid": 205359390,
+                            "duration": 366000
+                        },
+                        {
+                            "id": 9,
+                            "name": "武丁中兴",
+                            "bvid": "BV1qb411N7Jh",
+                            "cid": 60912037,
+                            "duration": 359000
+                        },
+                        {
+                            "id": 10,
+                            "name": "末代商王",
+                            "bvid": "BV1eb411w7u7",
+                            "cid": 61772834,
+                            "duration": 308000
+                        },
+                        {
+                            "id": 11,
+                            "name": "西周灭商",
+                            "bvid": "BV1wt411U76c",
+                            "cid": 62673908,
+                            "duration": 337000
+                        },
+                        {
+                            "id": 12,
+                            "name": "周公治国",
+                            "bvid": "BV1Rt411y7sj",
+                            "cid": 63543964,
+                            "duration": 367000
+                        },
+                        {
+                            "id": 13,
+                            "name": "东周西周",
+                            "bvid": "BV1wt411971j",
+                            "cid": 64471592,
+                            "duration": 402000
+                        },
+                        {
+                            "id": 14,
+                            "name": "霸王初现",
+                            "bvid": "BV1Vt411W7wD",
+                            "cid": 71155050,
+                            "duration": 445000
+                        },
+                        {
+                            "id": 15,
+                            "name": "大器晚成",
+                            "bvid": "BV1qt411a7yf",
+                            "cid": 72513878,
+                            "duration": 418000
+                        },
+                        {
+                            "id": 16,
+                            "name": "一鸣惊人",
+                            "bvid": "BV1Zt411t7W7",
+                            "cid": 73432706,
+                            "duration": 374000
+                        },
+                        {
+                            "id": 17,
+                            "name": "威震东南",
+                            "bvid": "BV16b411676g",
+                            "cid": 74560374,
+                            "duration": 374000
+                        },
+                        {
+                            "id": 18,
+                            "name": "吴越相争",
+                            "bvid": "BV15b411m7DG",
+                            "cid": 76691866,
+                            "duration": 365000
+                        },
+                        {
+                            "id": 19,
+                            "name": "三家分晋",
+                            "bvid": "BV1Pb411a76X",
+                            "cid": 77881273,
+                            "duration": 358000
+                        },
+                        {
+                            "id": 20,
+                            "name": "商鞅变法",
+                            "bvid": "BV1eb411B7zd",
+                            "cid": 79481568,
+                            "duration": 396000
+                        },
+                        {
+                            "id": 21,
+                            "name": "六国合纵",
+                            "bvid": "BV1ab411i7L5",
+                            "cid": 80339612,
+                            "duration": 352000
+                        },
+                        {
+                            "id": 22,
+                            "name": "以横破纵",
+                            "bvid": "BV1Bb411J7PR",
+                            "cid": 81319227,
+                            "duration": 323000
+                        },
+                        {
+                            "id": 23,
+                            "name": "昭王称霸",
+                            "bvid": "BV1Fb411E77E",
+                            "cid": 82630466,
+                            "duration": 294000
+                        },
+                        {
+                            "id": 24,
+                            "name": "乱世巨贾",
+                            "bvid": "BV1wb411s7VJ",
+                            "cid": 83783069,
+                            "duration": 292000
+                        },
+                        {
+                            "id": 25,
+                            "name": "新王登基",
+                            "bvid": "BV1wb411377M",
+                            "cid": 84782747,
+                            "duration": 355000
+                        },
+                        {
+                            "id": 26,
+                            "name": "千秋一统",
+                            "bvid": "BV17b411T7fX",
+                            "cid": 101319021,
+                            "duration": 319000
+                        },
+                        {
+                            "id": 27,
+                            "name": "风暴前夕",
+                            "bvid": "BV1g4411c7vm",
+                            "cid": 101148798,
+                            "duration": 407000
+                        },
+                        {
+                            "id": 28,
+                            "name": "揭竿而起",
+                            "bvid": "BV1p4411c7n3",
+                            "cid": 101152329,
+                            "duration": 372000
+                        },
+                        {
+                            "id": 29,
+                            "name": "霸王诞生",
+                            "bvid": "BV1Nt411n7RK",
+                            "cid": 104273433,
+                            "duration": 368000
+                        },
+                        {
+                            "id": 30,
+                            "name": "大风起兮",
+                            "bvid": "BV1dt411A7RV",
+                            "cid": 105979379,
+                            "duration": 428000
+                        },
+                        {
+                            "id": 31,
+                            "name": "双雄并立",
+                            "bvid": "BV18t411u7zG",
+                            "cid": 107776657,
+                            "duration": 354000
+                        },
+                        {
+                            "id": 32,
+                            "name": "楚汉争雄",
+                            "bvid": "BV1m4411X7Ly",
+                            "cid": 109580982,
+                            "duration": 390000
+                        },
+                        {
+                            "id": 33,
+                            "name": "吕氏专政",
+                            "bvid": "BV1g4411f7D1",
+                            "cid": 111609519,
+                            "duration": 455000
+                        },
+                        {
+                            "id": 34,
+                            "name": "文景之治",
+                            "bvid": "BV1f4411r7xm",
+                            "cid": 114731949,
+                            "duration": 378000
+                        },
+                        {
+                            "id": 35,
+                            "name": "汉武大帝",
+                            "bvid": "BV1F4411m75e",
+                            "cid": 114798256,
+                            "duration": 422000
+                        },
+                        {
+                            "id": 36,
+                            "name": "王莽代汉",
+                            "bvid": "BV1w4411C7Hg",
+                            "cid": 116100580,
+                            "duration": 456000
+                        },
+                        {
+                            "id": 37,
+                            "name": "风起绿林",
+                            "bvid": "BV1EJ411A7TN",
+                            "cid": 117409427,
+                            "duration": 410000
+                        },
+                        {
+                            "id": 38,
+                            "name": "光武复国",
+                            "bvid": "BV1TJ411g7DN",
+                            "cid": 118843416,
+                            "duration": 442000
+                        }
+                    ],
+                    "originalUrl": "https://www.bilibili.com/bangumi/play/ss25469",
+                    "episodeCount": 38
+                }
             }
+            
         }
     },
     "历史故事": {

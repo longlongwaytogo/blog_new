@@ -278,6 +278,43 @@ def get_video_info(bvid):
             'episodeCount': 0
         }
 
+def get_bangumi_info(season_id):
+    """获取B站番剧/剧集信息"""
+    api_url = f'https://api.bilibili.com/pgc/view/web/season?season_id={season_id}'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': f'https://www.bilibili.com/bangumi/play/ss{season_id}'
+    }
+    try:
+        response = requests.get(api_url, headers=headers)
+        data = response.json()
+        if data.get('code') == 0 and 'result' in data:
+            result = data['result']
+            title = result.get('title', '未知番剧')
+            episodes = result.get('episodes', [])
+            videos = []
+            for i, ep in enumerate(episodes):
+                videos.append({
+                    'id': i + 1,
+                    'name': ep.get('long_title') or ep.get('title') or f'第{i+1}集',
+                    'bvid': ep.get('bvid'),
+                    'cid': ep.get('cid'),
+                    'duration': ep.get('duration', 0)
+                })
+            return {
+                'title': title,
+                'bvid': f'ss{season_id}',
+                'videos': videos,
+                'originalUrl': f'https://www.bilibili.com/bangumi/play/ss{season_id}',
+                'episodeCount': len(videos)
+            }
+        else:
+            print("未能获取到番剧信息")
+            return None
+    except Exception as e:
+        print(f"获取番剧信息时出错: {e}")
+        return None
+
 def save_to_json(data, filename, category=None, subcategory=None, collection_name=None):
     """将数据保存为JSON文件，按照videos.json中的格式"""
     # 如果提供了类别信息，则构建嵌套结构
@@ -363,9 +400,18 @@ def main():
         is_collection = '--collection' in sys.argv
     
     # 获取视频信息
-    video_info = get_ugc_season_info(bvid) if is_collection else get_video_info(bvid)
+    if re.match(r'^ss\d+$', bvid):
+        season_id = bvid[2:]
+        video_info = get_bangumi_info(season_id)
+    elif re.match(r'^https://www\.bilibili\.com/bangumi/play/ss(\d+)', bvid):
+        season_id = re.findall(r'ss(\d+)', bvid)[0]
+        video_info = get_bangumi_info(season_id)
+    else:
+        video_info = get_ugc_season_info(bvid) if is_collection else get_video_info(bvid)
     
-    # 打印结果
+    if video_info is None:
+        print("未能获取到视频信息，请检查BV号或网络连接。")
+        return
     print(f"视频标题: {video_info['title']}")
     print(f"BV号: {video_info['bvid']}")
     print(f"找到 {len(video_info['videos'])} 个视频:")

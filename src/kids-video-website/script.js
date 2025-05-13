@@ -7,226 +7,10 @@ let activeCategory = null;
 let activeSubCategory = null;
 
 async function loadCategories() {
-    try {
-        const response = await fetch('videos.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const videosData = await response.json();
-        
-        categoryTreeDiv.innerHTML = '';
-        
-        // Populate the category tree
-        for (const category in videosData) {
-            // Create category element
-            const categoryElement = document.createElement('div');
-            categoryElement.classList.add('video-category');
-            categoryElement.dataset.category = category;
-            categoryElement.innerHTML = `
-                <div class="flex justify-between items-center">
-                    <span>${category}</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            `;
-            
-            // Create container for subcategories
-            const subCategoriesContainer = document.createElement('div');
-            subCategoriesContainer.classList.add('subcategories-container', 'hidden');
-            
-            // Add subcategories
-            const categoryData = videosData[category];
-            for (const subCategory in categoryData) {
-                // Create subcategory element
-                const subCategoryElement = document.createElement('div');
-                subCategoryElement.classList.add('sub-category');
-                subCategoryElement.textContent = subCategory;
-                subCategoryElement.dataset.category = category;
-                subCategoryElement.dataset.subCategory = subCategory;
-                
-                // Check if this subcategory has nested collections
-                const subCategoryData = categoryData[subCategory];
-                
-                // Special handling for different data types
-                if (Array.isArray(subCategoryData)) {
-                    // Simple array of videos
-                    subCategoryElement.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        
-                        // Remove active class from all subcategories
-                        document.querySelectorAll('.sub-category').forEach(el => {
-                            el.classList.remove('active-subcategory');
-                        });
-                        
-                        // Add active class to this subcategory
-                        subCategoryElement.classList.add('active-subcategory');
-                        
-                        // Store active selections
-                        activeCategory = category;
-                        activeSubCategory = subCategory;
-                        
-                        loadVideos(category, subCategory);
-                    });
-                } else if (subCategoryData.bvid) {
-                    // Single video
-                    subCategoryElement.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        
-                        // Remove active class from all subcategories
-                        document.querySelectorAll('.sub-category').forEach(el => {
-                            el.classList.remove('active-subcategory');
-                        });
-                        
-                        // Add active class to this subcategory
-                        subCategoryElement.classList.add('active-subcategory');
-                        
-                        // Store active selections
-                        activeCategory = category;
-                        activeSubCategory = subCategory;
-                        
-                        loadVideos(category, subCategory);
-                    });
-                } else if (subCategoryData.videos) {
-                    // Direct video collection - special case like 李白诗集 or 爱上古诗-黄龙老师
-                    console.log(`Found direct video collection: ${subCategory}`, subCategoryData);
-                    
-                    // Fix for special characters in collection names
-                    const encodedSubCategory = encodeURIComponent(subCategory);
-                    
-                    subCategoryElement.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        
-                        // Remove active class from all subcategories
-                        document.querySelectorAll('.sub-category').forEach(el => {
-                            el.classList.remove('active-subcategory');
-                        });
-                        
-                        // Add active class to this subcategory
-                        subCategoryElement.classList.add('active-subcategory');
-                        
-                        // Store active selections
-                        activeCategory = category;
-                        activeSubCategory = subCategory;
-                        
-                        // Debug logging
-                        console.log(`Clicked on collection: ${subCategory}`);
-                        console.log(`Will load direct collection for: ${category}, ${subCategory}`);
-                        
-                        loadDirectCollection(category, subCategory);
-                    });
-                } else {
-                    // For subcategories with nested collections, add an expand/collapse function
-                    subCategoryElement.classList.add('has-collections');
-                    subCategoryElement.innerHTML = `
-                        <div class="flex justify-between items-center">
-                            <span>${subCategory}</span>
-                            <i class="fas fa-chevron-right text-sm"></i>
-                        </div>
-                    `;
-                    
-                    // Create container for collection items
-                    const collectionsContainer = document.createElement('div');
-                    collectionsContainer.classList.add('collections-container', 'hidden', 'pl-4');
-                    
-                    // Add collection items
-                    for (const collection in subCategoryData) {
-                        const collectionElement = document.createElement('div');
-                        collectionElement.classList.add('collection-item', 'py-1', 'pl-2', 'cursor-pointer', 'hover:bg-gray-100');
-                        collectionElement.textContent = collection;
-                        collectionElement.dataset.category = category;
-                        collectionElement.dataset.subCategory = subCategory;
-                        collectionElement.dataset.collection = collection;
-                        
-                        // Add click event to load this collection's videos
-                        collectionElement.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            
-                            // Remove active class from all collections
-                            document.querySelectorAll('.collection-item').forEach(el => {
-                                el.classList.remove('bg-gray-100', 'font-medium');
-                            });
-                            
-                            // Add active class to this collection
-                            collectionElement.classList.add('bg-gray-100', 'font-medium');
-                            
-                            // Store active selections
-                            activeCategory = category;
-                            activeSubCategory = subCategory;
-                            
-                            loadCollection(category, subCategory, collection);
-                        });
-                        
-                        collectionsContainer.appendChild(collectionElement);
-                    }
-                    
-                    // Toggle collections visibility on subcategory click
-                    subCategoryElement.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        
-                        const icon = subCategoryElement.querySelector('i');
-                        const isHidden = collectionsContainer.classList.contains('hidden');
-                        
-                        if (isHidden) {
-                            collectionsContainer.classList.remove('hidden');
-                            icon.classList.remove('fa-chevron-right');
-                            icon.classList.add('fa-chevron-down');
-                        } else {
-                            collectionsContainer.classList.add('hidden');
-                            icon.classList.remove('fa-chevron-down');
-                            icon.classList.add('fa-chevron-right');
-                        }
-                    });
-                    
-                    // Add collections container after the subcategory
-                    subCategoriesContainer.appendChild(subCategoryElement);
-                    subCategoriesContainer.appendChild(collectionsContainer);
-                    continue; // Skip the regular append below since we already added it
-                }
-                
-                subCategoriesContainer.appendChild(subCategoryElement);
-            }
-            
-            // Toggle subcategories visibility on category click
-            categoryElement.addEventListener('click', () => {
-                // Remove active class from all categories
-                document.querySelectorAll('.video-category').forEach(el => {
-                    el.classList.remove('active-category');
-                });
-                
-                // Add active class to this category
-                categoryElement.classList.add('active-category');
-                
-                // Toggle subcategories
-                const icon = categoryElement.querySelector('i');
-                const isHidden = subCategoriesContainer.classList.contains('hidden');
-                
-                // Close all other subcategory containers
-                document.querySelectorAll('.subcategories-container').forEach(el => {
-                    el.classList.add('hidden');
-                    const parentIcon = el.previousElementSibling.querySelector('i');
-                    if (parentIcon) {
-                        parentIcon.classList.remove('fa-chevron-up');
-                        parentIcon.classList.add('fa-chevron-down');
-                    }
-                });
-                
-                // Toggle this one
-                if (isHidden) {
-                    subCategoriesContainer.classList.remove('hidden');
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
-                } else {
-                    subCategoriesContainer.classList.add('hidden');
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
-                }
-            });
-            
-            categoryTreeDiv.appendChild(categoryElement);
-            categoryTreeDiv.appendChild(subCategoriesContainer);
-        }
-    } catch (error) {
-        console.error('Error loading categories:', error);
-    }
+    const response = await fetch('videos.json');
+    const videosData = await response.json();
+    categoryTreeDiv.innerHTML = '';
+    renderCategoryTree(videosData, categoryTreeDiv, []);
 }
 
 // Function to load a direct video collection (like 李白诗集)
@@ -754,19 +538,14 @@ function displayVideos(videos) {
 
 // Helper function to get the video title from various possible properties in the JSON
 function getVideoTitle(video, index) {
-    // Check for various possible title properties in order of likelihood
     if (video.title) return video.title;
     if (video.name) return video.name;
     if (video.videoTitle) return video.videoTitle;
     if (video.label) return video.label;
     if (video.text) return video.text;
     if (video.caption) return video.caption;
-    
-    // If no title property is found, check if there's an id or bvid that can be used
     if (video.id) return `视频: ${video.id}`;
     if (video.bvid) return `视频: ${video.bvid}`;
-    
-    // Last resort fallback
     return `视频 ${index + 1}`;
 }
 
@@ -779,6 +558,81 @@ function formatDuration(seconds) {
     
     // 格式化为 MM:SS，确保个位数前补0
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+function findVideosObject(obj) {
+    if (!obj || typeof obj !== 'object') return null;
+    if (Array.isArray(obj.videos)) return obj;
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key) && typeof obj[key] === 'object') {
+            let result = findVideosObject(obj[key]);
+            if (result) return result;
+        }
+    }
+    return null;
+}
+
+function renderCategoryTree(data, parentElement, path = []) {
+    for (const key in data) {
+        const value = data[key];
+        const nodeElement = document.createElement('div');
+        nodeElement.classList.add('tree-node');
+        nodeElement.textContent = key;
+        nodeElement.style.paddingLeft = `${path.length * 16}px`;
+
+        let childContainer = null;
+        // 递归渲染子节点
+        if (value && typeof value === 'object' && !value.videos) {
+            childContainer = document.createElement('div');
+            childContainer.classList.add('child-container', 'hidden');
+            renderCategoryTree(value, childContainer, [...path, key]);
+        }
+
+        // 判断是否有videos字段
+        if (value && typeof value === 'object' && value.videos) {
+            nodeElement.classList.add('leaf-node');
+            nodeElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // 激活样式
+                document.querySelectorAll('.tree-node').forEach(el => el.classList.remove('active-tree-node'));
+                nodeElement.classList.add('active-tree-node');
+                loadVideosByPath([...path, key]);
+            });
+        } else if (value && typeof value === 'object') {
+            nodeElement.classList.add('branch-node');
+            nodeElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (childContainer) {
+                    childContainer.classList.toggle('hidden');
+                    nodeElement.classList.toggle('expanded');
+                }
+            });
+        }
+
+        parentElement.appendChild(nodeElement);
+        if (childContainer) parentElement.appendChild(childContainer);
+    }
+}
+
+function loadVideosByPath(path) {
+    fetch('videos.json').then(res => res.json()).then(data => {
+        let node = data;
+        for (const key of path) {
+            node = node[key];
+        }
+        // 递归查找第一个有videos的对象
+        const videosObj = findVideosObject(node);
+        videoGridContainer.innerHTML = '';
+        if (videosObj && videosObj.videos) {
+            displayBilibiliPlayer(videosObj.videos);
+        } else {
+            // 显示"无视频"提示
+            const message = document.createElement('div');
+            message.className = 'text-center p-4 text-gray-500';
+            message.textContent = '该分类下暂无视频';
+            videoGridContainer.appendChild(message);
+        }
+    });
 }
 
 // Load categories when the page loads
